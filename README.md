@@ -46,7 +46,9 @@ targets:
 import RemoteAsyncImage
 
 struct YourView: View {
-    
+
+    @Environment(\.imageCache) static var cache: ImageCache
+
     var body: some View {
         let url = URL(
             string: "https://experience-ireland.s3.amazonaws.com/thumbs2/d07258d8-4274-11e9-9c68-02b782d69cda.800x600.jpg"
