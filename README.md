@@ -1,7 +1,9 @@
 # RemoteAsyncImage on SwiftUI
 
 RemoteAsyncImage is a view that asynchronously loads and displays an image.
+
 However, AsyncImage is available from iOS 15.
+
 RemoteAsyncImage provides you an image as AsyncImage for iOS > 15 and behavior of AsyncImage for iOS < 15
 
 ## Requirements
