@@ -118,16 +118,11 @@ public struct RemoteAsyncImage: View {
 struct RemoteAsyncImage_Previews: PreviewProvider {
     @Environment(\.imageCache) static var cache: ImageCache
     
-    static var urlPig: URL? {
-        URL(string: "http://httpbin.org/image/png")
-    }
     static var previews: some View {
         
         let url = URL(
             string: "https://experience-ireland.s3.amazonaws.com/thumbs2/d07258d8-4274-11e9-9c68-02b782d69cda.800x600.jpg"
         )
-        
-        let urlPig = URL(string: "http://httpbin.org/image/png")
         
         VStack {
             RemoteAsyncImage(
@@ -165,7 +160,7 @@ struct RemoteAsyncImage_Previews: PreviewProvider {
             .frame(width: 104, height: 144)
             .clipped()
             
-            RemoteAsyncImage(url: urlPig) {
+            RemoteAsyncImage(url: url) {
                 Text("Loading ...")
             }
             .resizable()
