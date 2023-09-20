@@ -2,7 +2,7 @@ import SwiftUI
 
 public struct RemoteAsyncImage: View {
     
-    @Environment(\.imageCache) static var cache: ImageCache
+//    @Environment(\.imageCache) var cache: ImageCache
     
     @ObservedObject private var loader: ImageLoader
     public let url: URL?
@@ -21,7 +21,7 @@ public struct RemoteAsyncImage: View {
     public init(url: URL?) {
         self.init(
             url: url,
-            cache: Self.cache
+            cache: Environment(\.imageCache).wrappedValue
         )
     }
     
@@ -36,7 +36,7 @@ public struct RemoteAsyncImage: View {
     public init(_ urlString: String?) {
         self.init(
             urlString,
-            cache: Self.cache
+            cache: Environment(\.imageCache).wrappedValue
         )
     }
     
@@ -58,7 +58,7 @@ public struct RemoteAsyncImage: View {
     ) {
         self.init(
             url: url,
-            cache: Self.cache,
+            cache: Environment(\.imageCache).wrappedValue,
             placeholder: placeholder
         )
     }

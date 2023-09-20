@@ -5,7 +5,7 @@ public protocol ImageCache {
 }
 
 public struct TemporaryImageCache: ImageCache {
-    private let cache = NSCache<NSURL, UIImage>()
+    private let cache: NSCache<NSURL, UIImage>
     
     public subscript(_ key: URL) -> UIImage? {
         get { cache.object(forKey: key as NSURL) }
@@ -16,6 +16,10 @@ public struct TemporaryImageCache: ImageCache {
                 if let nw = newValue { cache.setObject(nw, forKey: key as NSURL) }
             }
         }
+    }
+    
+    public init() {
+        self.cache = NSCache<NSURL, UIImage>()
     }
 }
 
