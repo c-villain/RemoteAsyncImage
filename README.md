@@ -47,7 +47,7 @@ import RemoteAsyncImage
 
 struct YourView: View {
 
-    @Environment(\.imageCache) static var cache: ImageCache
+    @Environment(\.imageCache) var cache: ImageCache
 
     var body: some View {
         let url = URL(
@@ -57,7 +57,7 @@ struct YourView: View {
         return VStack {
             RemoteAsyncImage(
                 url: url,
-                cache: Self.cache
+                cache: self.cache
             )
             .placeholder {
                 Text("Loading ...")
