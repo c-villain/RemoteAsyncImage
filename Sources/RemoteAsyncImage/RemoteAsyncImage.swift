@@ -84,34 +84,19 @@ public struct RemoteAsyncImage: View {
     }
     
     public var body: some View {
-        if #available(iOS 15, *) {
-            AsyncImage(
-                url: url,
-                content: { image in
-                    configurations.reduce(image.renderingMode(.original)) {
+        Group {
+            if loader.image != nil {
+                configurations
+                    .reduce(Image(uiImage: loader.image ?? UIImage()).renderingMode(.original)) {
                         current, config in config(current)
                     }
-                },
-                placeholder: {
-                    self.placeholder
-                }
-            )
-        } else {
-            Group {
-                if loader.image != nil {
-                    configurations
-                        .reduce(Image(uiImage: loader.image ?? UIImage()).renderingMode(.original)) {
-                            current, config in config(current)
-                        }
-                } else {
-                    placeholder
-                }
+            } else {
+                placeholder
             }
-            .onAppear(perform: loader.load)
-            .onDisappear(perform: loader.cancel)
         }
+        .onAppear(perform: loader.load)
+        .onDisappear(perform: loader.cancel)
     }
-
 }
 
 
